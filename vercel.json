@@ -1,5 +1,0 @@
-{
-  "installCommand": "echo 'skipping root install, handled in buildCommand'",
-  "buildCommand": "cd \"bunny's-portfolio-creator\" && npm install && npm run build",
-  "outputDirectory": "bunny's-portfolio-creator/dist"
-}
