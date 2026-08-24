@@ -1,0 +1,10 @@
+{
+  "name": "portfolio-creator",
+  "private": true,
+  "scripts": {
+    "install:app": "npm --prefix \"bunny's-portfolio-creator\" install",
+    "dev": "npm --prefix \"bunny's-portfolio-creator\" run dev",
+    "build": "npm --prefix \"bunny's-portfolio-creator\" run build",
+    "preview": "npm --prefix \"bunny's-portfolio-creator\" run preview"
+  }
+}
