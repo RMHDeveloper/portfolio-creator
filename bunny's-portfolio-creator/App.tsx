@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
+import html2canvas from 'html2canvas';
 import { PORTFOLIO_STEPS } from './constants';
 import { PortfolioData, QuestionType } from './types';
 import PortfolioPreview from './components/PortfolioPreview';
@@ -151,7 +152,7 @@ const App: React.FC = () => {
 
       await new Promise(r => setTimeout(r, 300));
 
-      const canvas = await (window as any).html2canvas(element, {
+      const canvas = await html2canvas(element, {
         useCORS: true,
         scale: 2,
         width: 1000,
@@ -178,11 +179,11 @@ const App: React.FC = () => {
 
   if (isIntro) {
     return (
-      <div className="fixed inset-0 bg-slate-900 flex items-center justify-center p-4 font-['Inter']">
+      <div className="fixed inset-0 bg-white flex items-center justify-center p-4 font-['Inter']">
         <div className="absolute inset-0 opacity-10 pointer-events-none">
            {/* Removed BNI Logo */}
         </div>
-        <div className="w-full max-w-sm bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col relative z-10 animate-in fade-in zoom-in duration-500">
+        <div className="w-full max-w-sm bg-white rounded-[2rem] shadow-[0_0_30px_rgba(0,0,0,0.50)] border border-slate-200 overflow-hidden flex flex-col relative z-10 animate-in fade-in zoom-in duration-500">
           <div className="bg-[#CF202E] p-8 text-center text-white shrink-0">
             {/* New: Bunny's Studio Logo on Intro Screen */}
             <img 
@@ -216,7 +217,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 py-10 px-4 font-['Inter']">
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden">
+        <div className="bg-white rounded-[2.5rem] shadow-[0_0_30px_rgba(0,0,0,0.50)] border border-slate-200 overflow-hidden">
           <header className="bg-[#CF202E] p-4 flex justify-between items-center rounded-t-[2.5rem] border-b border-red-700">
             {/* Group Logo and App Name */}
             <div className="flex items-center gap-4">
@@ -276,7 +277,8 @@ const App: React.FC = () => {
                     Previous
                   </button>
                 ) : (
-                  <div className="w-[120px] h-[40px]"/> {/* Placeholder for Previous button */}
+                  // Placeholder for Previous button
+                  <div className="w-[120px] h-[40px]"/>
                 )}
 
                 <button
@@ -330,7 +332,7 @@ const App: React.FC = () => {
               <p className="text-slate-400 text-xs font-medium">Your professional profile is ready.</p>
             </div>
             
-            <div className="relative shadow-2xl rounded-[32px] overflow-hidden bg-white border-4 border-white w-[320px] h-[320px]">
+            <div className="relative shadow-[0_0_30px_rgba(0,0,0,0.50)] rounded-[32px] overflow-hidden bg-white border-4 border-white w-[320px] h-[320px]">
               <div 
                 className="origin-top-left" 
                 style={{ 

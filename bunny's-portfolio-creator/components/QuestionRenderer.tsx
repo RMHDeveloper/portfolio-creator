@@ -1,6 +1,7 @@
 
-import React from 'react'; // Removed useState as it's no longer needed for optimization states
+import React, { useState } from 'react';
 import { Question, QuestionType } from '../types';
+import ImageCropModal from './ImageCropModal';
 // Removed import for optimizeBusinessPhrasing
 
 interface QuestionRendererProps {
@@ -10,6 +11,7 @@ interface QuestionRendererProps {
 }
 
 const QuestionRenderer: React.FC<QuestionRendererProps> = ({ question, value, onChange }) => {
+  const [pendingImage, setPendingImage] = useState<string | null>(null);
   // Removed optimization and loading states
 
   // Removed handleOptimize function
@@ -30,20 +32,32 @@ const QuestionRenderer: React.FC<QuestionRendererProps> = ({ question, value, on
         </div>
         <label className="px-6 py-3 bg-white border border-slate-200 rounded-xl text-center cursor-pointer hover:border-rose-600 transition-all shadow-sm">
           <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Select Headshot</span>
-          <input 
-            type="file" 
-            accept="image/*" 
+          <input
+            type="file"
+            accept="image/*"
             onChange={(e) => {
               const file = e.target.files?.[0];
               if (file) {
                 const reader = new FileReader();
-                reader.onloadend = () => onChange(reader.result as string);
+                reader.onloadend = () => setPendingImage(reader.result as string);
                 reader.readAsDataURL(file);
               }
-            }} 
-            className="hidden" 
+              e.target.value = '';
+            }}
+            className="hidden"
           />
         </label>
+
+        {pendingImage && (
+          <ImageCropModal
+            imageSrc={pendingImage}
+            onCancel={() => setPendingImage(null)}
+            onSave={(croppedDataUrl) => {
+              onChange(croppedDataUrl);
+              setPendingImage(null);
+            }}
+          />
+        )}
       </div>
     );
   }
