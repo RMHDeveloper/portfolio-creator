@@ -1,0 +1,5 @@
+{
+  "installCommand": "npm --prefix \"bunny's-portfolio-creator\" install",
+  "buildCommand": "npm --prefix \"bunny's-portfolio-creator\" run build",
+  "outputDirectory": "bunny's-portfolio-creator/dist"
+}
